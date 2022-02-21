@@ -1,0 +1,56 @@
+acl list
+
+acl setuser ahmed on >pass allcommands allkeys
+
+acl whoami
+
+auth ahmed pass
+
+acl whoami
+
+acl setuser ahmed on >pass nocommands -set +get
+
+auth default pass
+
+acl list
+
+acl deluser username
+
+=============================================
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm search hub redis
+helm search repo redis
+helm install my-release bitnami/chart-name
+helm repo update
+ 
+ # https://artifacthub.io/packages/helm/bitnami/redis
+ helm install redis-test bitnami/redis
+ kubectl get all
+ kubectl get pod
+ helm upgrade redis-test bitnami/redis --set replica.replicaCount=2
+ kubectl get pod
+ helm delete redis-test
+ kubectl get all
+ kubectl get pod
+ helm install redis-test bitnami/redis --set replica.replicaCount=2
+
+# Get password
+ kubectl get secret --namespace default redis-test -o jsonpath="{.data.redis-password}"
+ certutil -decode .\datab64.txt .\data.txt
+
+ # Create Redis Client
+ kubectl run --namespace default redis-client --restart='Never'  --env REDIS_PASSWORD=zaza  --image docker.io/bitnami/redis:6.2.6-debian-10-r103 --command -- sleep infinity
+ kubectl exec --tty -i redis-client --namespace default -- bash
+
+ REDISCLI_AUTH=zaza redis-cli -h redis-test-master
+ REDISCLI_AUTH=zaza redis-cli -h redis-test-replicas
+
+
+ # You can set the password
+ helm install redis-test bitnami/redis --set auth.password=zaza
+ 
+ ==============================================
+ 
+ 
