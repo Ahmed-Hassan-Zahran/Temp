@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redisapi
+  labels:
+    app: saasredisapi
+spec:
+  containers:
+  - name: redis-api
+    image: thiqahsaasacr.azurecr.io/saas/redis/redis.host:latest
+    ports:
+    - containerPort: 80
