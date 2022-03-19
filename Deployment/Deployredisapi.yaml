@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-api
+  labels:
+    app: redisapilabel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisapilabel
+  template:
+    metadata:
+      labels:
+        app: redisapilabel
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: redis-api
+        image: thiqahsaasacr.azurecr.io/saas/redis/redis.host:38325
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
