@@ -69,3 +69,5 @@ kubectl get replicasets
 
 #view secrets
 kubectl get secrets
+
+helm install --generate-name --dry-run --debug .\charts\redis
