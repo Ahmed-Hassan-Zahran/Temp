@@ -1,1 +1,5 @@
 kubectl config current-context
+
+
+# Get environment variables created at pod startup
+kubectl exec -it zahran-pod-name -n saas-redis -- env | sort
