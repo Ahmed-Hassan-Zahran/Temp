@@ -1,0 +1,7 @@
+# Display chart manifest
+# without connection to K8s
+helm template [chart]
+# with connection to K8s
+helm install [release] [chart] stable/mysql --dry-run --debug
+helm install mysql stable/mysql --dry-run --debug
+helm install mysql stable/mysql --dry-run --debug 2>&1|less # As it output to standard error
