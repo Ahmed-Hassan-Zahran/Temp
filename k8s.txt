@@ -2,4 +2,11 @@ kubectl config current-context
 
 
 # Get environment variables created at pod startup
-kubectl exec -it zahran-pod-name -n saas-redis -- env | sort
+kubectl exec -it z-pod-name -n saas-redis -- env | sort
+
+# Run curl
+kubectl run -it --rm curl --restart Never --image nbrown/curl -- 10.245.35.211:8080
+kubectl run -it --rm curl --restart Never --image nbrown/curl -- z-service-name:8080
+
+
+kubectl edit svc z-service-name
