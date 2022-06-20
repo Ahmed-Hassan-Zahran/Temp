@@ -51,6 +51,9 @@ helm repo update
  # You can set the password
  helm install redis-test bitnami/redis --set auth.password=zaza
  
+ kubectl get all -n saas-redis
+ kubectl run --namespace saas-redis redis-client --restart='Never'  --env REDIS_PASSWORD=zaza  --image docker.io/bitnami/redis:6.2.6-debian-10-r103 --command -- sleep infinity
+ kubectl exec --tty -i redis-client --namespace saas-redis -- bash
  ==============================================
  
  
