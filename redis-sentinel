@@ -1,0 +1,18 @@
+Using the folowing link
+https://docs.bitnami.com/tutorials/deploy-redis-sentinel-production-cluster/
+============================================================================
+
+-- get values.yaml from https://github.com/bitnami/charts/blob/master/bitnami/redis/values.yaml
+-- enable sentinel
+-- set password in values.yaml
+redis:
+    password: "pass"
+
+-- run redis using the values.yaml
+helm install redis bitnami/redis --values ./values.yaml
+
+-- run redis-client
+kubectl run --namespace default redis-client --rm --tty -i --restart='Never' --env REDIS_PASSWORD=$REDIS_PASSWORD --labels="redis-client=true" --image docker.io/bitnami/redis:5.0.5-debian-9-r141 -- bash
+
+redis-cli -h POD-NAME.HEADLESS-SVC-NAME -a $REDIS_PASSWORD ===
+redis-cli -h redis-node-0.redis-headless -a pass
