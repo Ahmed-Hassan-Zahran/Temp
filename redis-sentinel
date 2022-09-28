@@ -3,10 +3,13 @@ https://docs.bitnami.com/tutorials/deploy-redis-sentinel-production-cluster/
 ============================================================================
 
 -- get values.yaml from https://github.com/bitnami/charts/blob/master/bitnami/redis/values.yaml
--- enable sentinel
+-- enable sentinel in values.yaml
 -- set password in values.yaml
 redis:
     password: "pass"
+-- Enable metrics
+metrics:
+  enabled: true
 
 -- run redis using the values.yaml
 helm install redis bitnami/redis --values ./values.yaml
