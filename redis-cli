@@ -1,6 +1,4 @@
-ACL SETUSER user1 on >password +@all ~* -select +select|1
-
-acl setuser ahmed on >password ~*+@all -select +select|1
+ACL SETUSER ahmed7 on >password +@all ~* -select +select|7 -acl
 
 acl list
 
