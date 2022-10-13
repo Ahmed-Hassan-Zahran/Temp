@@ -1,1 +1,26 @@
 ACL SETUSER user1 on >password +@all ~* -select +select|1
+
+acl setuser ahmed on >password ~*+@all -select +select|1
+
+acl list
+
+acl setuser ahmed on >pass allcommands allkeys
+
+acl whoami
+
+auth ahmed pass
+
+acl whoami
+
+acl setuser ahmed on >pass nocommands -set +get
+
+auth default pass
+
+acl list
+
+acl deluser username
+
+
+--select DB-Number from 0 to 15
+select 0
+select 3
