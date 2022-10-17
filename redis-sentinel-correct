@@ -1,0 +1,37 @@
+ kubectl run --namespace default DEPLOYMENT-NAME-redis-client --rm --tty -i --restart='Never' 
+    --env REDIS_PASSWORD="" \--labels="redis-client=true" \
+   --image docker.io/bitnami/redis:5.0.5-debian-9-r141 -- bash
+
+
+locally copy values.yaml -> values-production.yaml
+set Password -> pass in values-production.yaml
+in the same folder of values-production.yaml
+helm install redis bitnami/redis --values values-production.yaml
+
+kubectl run --namespace default redis-client --rm --tty -i --restart='Never' --env REDIS_PASSWORD=pass --labels="redis-client=true" --image docker.io/bitnami/redis:5.0.5-debian-9-r141 -- bash
+
+redis-cli -h redis-node-0.redis-headless -a "pass"
+or
+redis-cli -h redis-node-0.redis-headless -a $REDIS_PASSWORD
+set k vvv
+
+redis-cli -h redis-replicas-0.redis-headless -a "pass"
+get k -> vvv
+redis-cli -h redis-node-1.redis-headless -a "pass"
+get k -> vvv
+redis-cli -h redis-node-2.redis-headless -a "pass"
+get k -> vvv
+
+set $REDIS_PASSWORD = pass
+
+To access sentinel
+redis-cli -h redis-node-0.redis-headless -p 26379 -a $REDIS_PASSWORD
+REDISCLI_AUTH=pass redis-cli -h redis-master-0.redis-headless -p 26379
+
+kubectl get sts
+kubectl scale sts redis-node --replicas=0
+kubectl scale sts redis-node --replicas=3
+kubectl get all
+
+
+ACL SETUSER ahmed7 on >password +@all ~* -select +select|7 -acl
